@@ -8,13 +8,6 @@
     <title>Hogwarts Student List</title>
   </head>
   <body>
-    <!-- <template>
-      <article>
-        <h2 class="name"></h2>
-        <p class="gender"></p>
-        <p class="house"></p>
-      </article>
-    </template> -->
     <template>
       <li>
         <p class="name"></p>
@@ -22,8 +15,31 @@
         <p class="house"></p>
       </li>
     </template>
-    <ul class="list"></ul>
-    <section class="container"></section>
+    <h1>Hogwarts Student List</h1>
+
+    <div class="houseinfo">
+      <p>Houses:</p>
+    </div>
+    <div class="siteinfo">
+      <p class="studentnumber">Number of students:</p>
+      <p class="expellednumber">Expelled students:</p>
+      <p class="displayednumber">Currently displayed:</p>
+    </div>
+    <section class="listsection">
+      <div class="filter">
+        <button>Firstname</button>
+        <button>Lastname</button>
+        <button>House</button>
+        <button>Expelled</button>
+      </div>
+      <div class="listinfo">
+        <p>Name</p>
+        <p>Gender</p>
+        <p>House</p>
+      </div>
+      <ul class="list"></ul>
+    </section>
+    <!-- <section class="container"></section> -->
 
     <script src="newscript.js"></script>
   </body>

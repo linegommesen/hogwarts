@@ -1,23 +1,59 @@
-/* .container {
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-}
-
-article {
-  border: 1px solid black;
-  padding: 1rem;
-} */
 ul {
-  max-width: 80%;
+  padding: 0;
+  margin-top: 1rem;
+  /* max-width: 80%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 }
 li {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  /* background-color: #0f2027;
+  opacity: 80%; */
+}
+.siteinfo,
+.listinfo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+body {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+@font-face {
+  font-family: "magic_school_oneregular";
+  src: url("magicschoolone-ovyz-webfont.woff2") format("woff2"), url("magicschoolone-ovyz-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+h1 {
+  font-family: "magic_school_oneregular";
+  font-size: 6rem;
+  text-align: center;
+}
+.siteinfo p,
+.houseinfo p {
+  margin-top: 0;
+  font-family: "magic_school_oneregular";
+  font-size: 3rem;
+}
+.filter {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 8rem;
+}
+button {
+  font-family: "magic_school_oneregular";
+  font-size: 2rem;
+  padding: 3px;
+  border-radius: 16px;
+}
+.listinfo {
+  margin-top: 3rem;
+  font-weight: bold;
 }
