@@ -8,6 +8,7 @@ ul {
 li {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  column-gap: 4rem;
   /* background-color: #0f2027;
   opacity: 80%; */
 }
@@ -35,25 +36,29 @@ h1 {
   font-family: "magic_school_oneregular";
   font-size: 6rem;
   text-align: center;
+  color: #d39e2f;
 }
 .siteinfo p,
 .houseinfo p {
   margin-top: 0;
   font-family: "magic_school_oneregular";
   font-size: 3rem;
+  color: #d39e2f;
 }
-.filter {
+/* .filter {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 8rem;
-}
+} */
 button {
   font-family: "magic_school_oneregular";
   font-size: 2rem;
   padding: 3px;
   border-radius: 16px;
+  background-color: #d39e2f;
 }
 .listinfo {
+  /* color: #d39e2f; */
   margin-top: 3rem;
   font-weight: bold;
 }

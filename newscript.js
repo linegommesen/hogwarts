@@ -3,7 +3,6 @@
 window.addEventListener("load", start);
 
 let studentArray = [];
-console.log("studentArray", studentArray);
 
 const Student = {
   firstname: "",
@@ -22,11 +21,11 @@ async function loadJson() {
   const jsonData = await response.json();
   console.log(jsonData);
 
-  //   fetch(`https://petlatkea.dk/2021/hogwarts/students.json`)
-  //     .then((response) => response.json())
-  //     .then((jsonData) => prepareObjects(jsonData));
-
+  addEventlisteners();
   prepareObjects(jsonData);
+}
+function addEventlisteners() {
+  document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", setFilter));
 }
 function prepareObjects(jsonData) {
   studentArray = jsonData.map(prepareObject);
@@ -47,21 +46,6 @@ function prepareObject(jsonObject) {
   //   console.log(student);
   return student;
 }
-function displayList(students) {
-  document.querySelector(".list").innerHTML = "";
-
-  students.forEach(displayStudent);
-}
-function displayStudent(student) {
-  const clone = document.querySelector("template").content.cloneNode(true);
-
-  clone.querySelector(".name").textContent = student.firstname + " " + student.lastname;
-  clone.querySelector(".house").textContent = student.house;
-  clone.querySelector(".gender").textContent = student.gender;
-
-  document.querySelector(".list").appendChild(clone);
-}
-
 function getNameParts(fullname) {
   const trimmedName = fullname.trim();
 
@@ -90,4 +74,47 @@ function getHouse(house) {
   // const lowerCase = trimmedHouse.toLowerCase();
   const cleanedHouse = trimmedHouse[0].toUpperCase() + trimmedHouse.substring(1).toLowerCase();
   return cleanedHouse;
+}
+function setFilter(event) {
+  const filter = event.target.dataset.filter;
+  filterList(filter);
+}
+function filterList(studentHouse) {
+  let filteredList = studentArray;
+  if (studentHouse === "Gryffindor") {
+    filteredList = studentArray.filter(isGryffindor);
+  } else if (studentHouse === "Slytherin") {
+    filteredList = studentArray.filter(isSlytherin);
+  } else if (studentHouse === "Ravenclaw") {
+    filteredList = studentArray.filter(isRavenclaw);
+  } else if (studentHouse === "Hufflepuff") {
+    filteredList = studentArray.filter(isHufflepuff);
+  }
+  displayList(filteredList);
+}
+function isGryffindor(student) {
+  return student.house === "Gryffindor";
+}
+function isSlytherin(student) {
+  return student.house === "Slytherin";
+}
+function isRavenclaw(student) {
+  return student.house === "Ravenclaw";
+}
+function isHufflepuff(student) {
+  return student.house === "Hufflepuff";
+}
+function displayList(students) {
+  document.querySelector(".list").innerHTML = "";
+
+  students.forEach(displayStudent);
+}
+function displayStudent(student) {
+  const clone = document.querySelector("template").content.cloneNode(true);
+
+  clone.querySelector(".name").textContent = student.firstname + " " + student.lastname;
+  clone.querySelector(".house").textContent = student.house;
+  clone.querySelector(".gender").textContent = student.gender;
+
+  document.querySelector(".list").appendChild(clone);
 }
