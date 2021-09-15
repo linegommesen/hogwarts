@@ -8,12 +8,19 @@
     <title>Hogwarts Student List</title>
   </head>
   <body>
-    <template>
-      <li>
+    <template id="student">
+      <tr>
+        <td data-field="name">NAME</td>
+        <td data-field="house">HOUSE</td>
+        <td data-field="prefect">🎖</td>
+        <!-- <td data-field="desc">DESCRIPTION</td>
+        <td data-field="age">AGE</td> -->
+      </tr>
+      <!-- <li>
         <p class="name"></p>
         <p class="gender"></p>
         <p class="house"></p>
-      </li>
+      </li> -->
     </template>
     <h1>Hogwarts Student List</h1>
 
@@ -25,24 +32,23 @@
       <p class="expellednumber">Expelled students:</p>
       <p class="displayednumber">Currently displayed:</p>
     </div>
-    <section class="listsection">
-      <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
-      <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
-      <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
-      <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
-      <button class="filter" data-action="filter" data-filter="*">all</button>
-      <!-- <button>Firstname</button>
-        <button>Lastname</button>
-        <button>House</button>
-        <button>Expelled</button> -->
-      <div class="listinfo">
-        <p>Name</p>
-        <p>Gender</p>
-        <p>House</p>
-      </div>
-      <table class="list"></table>
-    </section>
-    <!-- <section class="container"></section> -->
+
+    <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
+    <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
+    <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
+    <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
+    <button class="filter" data-action="filter" data-filter="*">all</button>
+
+    <table id="list">
+      <thead>
+        <tr id="sorting">
+          <th data-action="sort" data-sort-direction="asc" data-sort="name">Name</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="house">House</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="prefect">🎖</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
     <script src="newscript.js"></script>
   </body>
