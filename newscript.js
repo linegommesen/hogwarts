@@ -12,6 +12,13 @@ const Student = {
   house: "",
   gender: "",
 };
+
+const settings = {
+  filterBy: "all",
+  sortBy: "firstname",
+  sortDir: "asc",
+};
+
 function start() {
   console.log("ready");
   loadJson();
@@ -25,9 +32,9 @@ async function loadJson() {
   prepareObjects(jsonData);
 }
 function addEventlisteners() {
-  document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", setFilter));
+  document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
 
-  document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", setSort));
+  document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
 }
 function prepareObjects(jsonData) {
   studentArray = jsonData.map(prepareObject);
@@ -78,22 +85,26 @@ function getHouse(house) {
   return cleanedHouse;
 }
 //filtering
-function setFilter(event) {
+function selectFilter(event) {
   const filter = event.target.dataset.filter;
-  filterList(filter);
+  setFilter(filter);
 }
-function filterList(studentHouse) {
-  let filteredList = studentArray;
-  if (studentHouse === "Gryffindor") {
+function setFilter(filter) {
+  settings.filterBy = filter;
+  buildList(settings.filterBy);
+}
+function filterList(filteredList) {
+  // let filteredList = studentArray;
+  if (settings.filterBy === "Gryffindor") {
     filteredList = studentArray.filter(isGryffindor);
-  } else if (studentHouse === "Slytherin") {
+  } else if (settings.filterBy === "Slytherin") {
     filteredList = studentArray.filter(isSlytherin);
-  } else if (studentHouse === "Ravenclaw") {
+  } else if (settings.filterBy === "Ravenclaw") {
     filteredList = studentArray.filter(isRavenclaw);
-  } else if (studentHouse === "Hufflepuff") {
+  } else if (settings.filterBy === "Hufflepuff") {
     filteredList = studentArray.filter(isHufflepuff);
   }
-  displayList(filteredList);
+  return filteredList;
 }
 function isGryffindor(student) {
   return student.house === "Gryffindor";
@@ -108,7 +119,8 @@ function isHufflepuff(student) {
   return student.house === "Hufflepuff";
 }
 //sorting
-function setSort(event) {
+
+function selectSort(event) {
   const sortBy = event.target.dataset.sort;
 
   const sortDir = event.target.dataset.sortDirection;
@@ -117,13 +129,18 @@ function setSort(event) {
   } else {
     event.target.dataset.sortDirection = "asc";
   }
-  sortList(sortBy, sortDir);
+  setSort(sortBy, sortDir);
+}
+function setSort(sortBy, sortDir) {
+  settings.sortBy = sortBy;
+  settings.sortDir = sortDir;
+  buildList();
 }
 
-function sortList(sortBy, sortDir) {
-  let sortedList = studentArray;
+function sortList(sortedList) {
+  //   let sortedList = studentArray;
   let direction = 1;
-  if (sortDir === "desc") {
+  if (settings.sortDir === "desc") {
     direction = -1;
   } else {
     direction = 1;
@@ -131,14 +148,20 @@ function sortList(sortBy, sortDir) {
   sortedList = sortedList.sort(sortByClicked);
 
   function sortByClicked(studentA, studentB) {
-    console.log(`sortBy is ${sortBy}`);
+    console.log(`sortBy is ${settings.sortBy}`);
     // console.log(studentA, studentB);
-    if (studentA[sortBy] < studentB[sortBy]) {
+    if (studentA[settings.sortBy] < studentB[settings.sortBy]) {
       return -1 * direction;
     } else {
       return 1 * direction;
     }
   }
+
+  return sortedList;
+}
+function buildList() {
+  const currentList = filterList(studentArray);
+  const sortedList = sortList(currentList);
 
   displayList(sortedList);
 }
