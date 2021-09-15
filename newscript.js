@@ -110,20 +110,33 @@ function isHufflepuff(student) {
 //sorting
 function setSort(event) {
   const sortBy = event.target.dataset.sort;
-  sortList(sortBy);
+
+  const sortDir = event.target.dataset.sortDirection;
+  if (sortDir === "asc") {
+    event.target.dataset.sortDirection = "desc";
+  } else {
+    event.target.dataset.sortDirection = "asc";
+  }
+  sortList(sortBy, sortDir);
 }
-function sortList(sortBy) {
+
+function sortList(sortBy, sortDir) {
   let sortedList = studentArray;
+  let direction = 1;
+  if (sortDir === "desc") {
+    direction = -1;
+  } else {
+    direction = 1;
+  }
+  sortedList = sortedList.sort(sortByClicked);
 
-  sortedList = sortedList.sort(sortByName);
-
-  function sortByName(studentA, studentB) {
+  function sortByClicked(studentA, studentB) {
     console.log(`sortBy is ${sortBy}`);
     // console.log(studentA, studentB);
     if (studentA[sortBy] < studentB[sortBy]) {
-      return -1;
+      return -1 * direction;
     } else {
-      return 1;
+      return 1 * direction;
     }
   }
 
