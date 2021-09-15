@@ -19,7 +19,7 @@ function start() {
 async function loadJson() {
   const response = await fetch(`https://petlatkea.dk/2021/hogwarts/students.json`);
   const jsonData = await response.json();
-  console.log(jsonData);
+  //   console.log(jsonData);
 
   addEventlisteners();
   prepareObjects(jsonData);
@@ -45,7 +45,7 @@ function prepareObject(jsonObject) {
   student.house = cleanedHouse;
   student.gender = jsonObject.gender;
 
-  console.log(student);
+  //   console.log(student);
   return student;
 }
 function getNameParts(fullname) {
@@ -115,28 +115,19 @@ function setSort(event) {
 function sortList(sortBy) {
   let sortedList = studentArray;
 
-  if (sortBy === "name") {
-    sortedList = sortedList.sort(sortByName);
-  } else if (sortBy === "house") {
-    sortedList = sortedList.sort(sortByHouse);
+  sortedList = sortedList.sort(sortByName);
+
+  function sortByName(studentA, studentB) {
+    console.log(`sortBy is ${sortBy}`);
+    // console.log(studentA, studentB);
+    if (studentA[sortBy] < studentB[sortBy]) {
+      return -1;
+    } else {
+      return 1;
+    }
   }
 
   displayList(sortedList);
-}
-function sortByName(studentA, studentB) {
-  console.log(studentA, studentB);
-  if (studentA.firstname < studentB.firstname) {
-    return -1;
-  } else {
-    return 1;
-  }
-}
-function sortByHouse(studentA, studentB) {
-  if (studentA.house < studentB.house) {
-    return -1;
-  } else {
-    return 1;
-  }
 }
 //visual
 function displayList(students) {
