@@ -11,6 +11,7 @@ const Student = {
   nickname: "",
   house: "",
   gender: "",
+  prefect: false,
 };
 
 const settings = {
@@ -38,8 +39,7 @@ function addEventlisteners() {
 }
 function prepareObjects(jsonData) {
   studentArray = jsonData.map(prepareObject);
-
-  displayList(studentArray);
+  buildList();
 }
 function prepareObject(jsonObject) {
   const student = Object.create(Student);
@@ -177,6 +177,21 @@ function displayStudent(student) {
   clone.querySelector("[data-field=name]").textContent = student.firstname + " " + student.lastname;
   clone.querySelector("[data-field=house]").textContent = student.house;
   //   clone.querySelector(".gender").textContent = student.gender;
+  if (student.prefect === true) {
+    clone.querySelector("[data-field=prefect]").textContent = "⭐️";
+  } else {
+    clone.querySelector("[data-field=prefect]").textContent = "☆";
+  }
+  clone.querySelector("[data-field=prefect]").addEventListener("click", clickPrefect);
+
+  function clickPrefect() {
+    if (student.prefect === true) {
+      student.prefect = false;
+    } else {
+      student.prefect = true;
+    }
+    buildList();
+  }
 
   document.querySelector("#list tbody").appendChild(clone);
 }
