@@ -8,20 +8,6 @@
     <title>Hogwarts Student List</title>
   </head>
   <body>
-    <template id="student">
-      <tr>
-        <td data-field="name">NAME</td>
-        <td data-field="house">HOUSE</td>
-        <td data-field="prefect">☆</td>
-        <!-- <td data-field="desc">DESCRIPTION</td>
-        <td data-field="age">AGE</td> -->
-      </tr>
-      <!-- <li>
-        <p class="name"></p>
-        <p class="gender"></p>
-        <p class="house"></p>
-      </li> -->
-    </template>
     <h1>Hogwarts Student List</h1>
 
     <div class="houseinfo">
@@ -44,11 +30,20 @@
         <tr id="sorting">
           <th data-action="sort" data-sort-direction="asc" data-sort="firstname">Name</th>
           <th data-action="sort" data-sort-direction="asc" data-sort="house">House</th>
-          <th data-action="sort" data-sort-direction="asc" data-sort="prefect">☆</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="prefect">Prefect</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="squad">Inquisitorial squad</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
+    <template id="student">
+      <tr>
+        <td data-field="name">NAME</td>
+        <td data-field="house">HOUSE</td>
+        <td data-field="prefect">☆</td>
+        <td data-field="squad" data-squad="false"></td>
+      </tr>
+    </template>
 
     <script src="newscript.js"></script>
   </body>

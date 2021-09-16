@@ -62,3 +62,27 @@ button {
   margin-top: 3rem;
   font-weight: bold;
 }
+/* #list tbody td:nth-child(odd) td {
+  background-color: lightblue;
+  border-right: rgb(240, 249, 255) 1px dotted;
+}
+#list tbody td:nth-child(even) td {
+  border-right: rgb(171, 219, 252) 1px dotted;
+} */
+
+#list tbody tr td {
+  padding: 2rem;
+}
+#list tbody tr:nth-child(2n + 1) td {
+  background-color: lightblue;
+  /* border-right: 1px dotted rgb(240, 249, 255); */
+}
+#list tbody tr:nth-child(2n) td {
+  /* border-right: 1px dotted rgb(171, 219, 252); */
+}
+td[data-field="squad"]::after {
+  content: "🎖";
+}
+td[data-field="squad"][data-squad="false"]::after {
+  filter: grayscale(1);
+}

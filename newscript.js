@@ -12,6 +12,7 @@ const Student = {
   house: "",
   gender: "",
   prefect: false,
+  squad: false,
 };
 
 const settings = {
@@ -176,7 +177,8 @@ function displayStudent(student) {
 
   clone.querySelector("[data-field=name]").textContent = student.firstname + " " + student.lastname;
   clone.querySelector("[data-field=house]").textContent = student.house;
-  //   clone.querySelector(".gender").textContent = student.gender;
+
+  //Prefect
   if (student.prefect === true) {
     clone.querySelector("[data-field=prefect]").textContent = "⭐️";
   } else {
@@ -189,6 +191,19 @@ function displayStudent(student) {
       student.prefect = false;
     } else {
       student.prefect = true;
+    }
+    buildList();
+  }
+
+  //Squad
+  clone.querySelector("[data-field=squad]").dataset.squad = student.squad;
+
+  clone.querySelector("[data-field=squad]").addEventListener("click", clickSquad);
+  function clickSquad() {
+    if (student.squad === true) {
+      student.squad = false;
+    } else {
+      student.squad = true;
     }
     buildList();
   }
