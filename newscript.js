@@ -207,7 +207,32 @@ function displayStudent(student) {
     }
     buildList();
   }
+  clone.querySelector("[data-field=name]").addEventListener("click", clickStudent);
+  function clickStudent() {
+    document.querySelector("#student_popup").classList.remove("hide");
+    document.querySelector(".name").textContent = student.firstname + " " + student.lastname;
+    document.querySelector(".squad").textContent = `Member of Inquisitorial squad: ${student.squad}`;
 
+    if (student.prefect === true) {
+      document.querySelector(".prefect").textContent = "Prefect status: " + "⭐️";
+    } else {
+      document.querySelector(".prefect").textContent = "Prefect status: " + "☆";
+    }
+    if (student.house === "Gryffindor") {
+      document.querySelector(".crest").src = "crests/gryffindor.png";
+    } else if (student.house === "Slytherin") {
+      document.querySelector(".crest").src = "crests/slytherin.png";
+    } else if (student.house === "Hufflepuff") {
+      document.querySelector(".crest").src = "crests/hufflepuff.png";
+    } else {
+      document.querySelector(".crest").src = "crests/ravenclaw.png";
+    }
+    document.querySelector("#student_popup .closebutton").addEventListener("click", closeStudentDialog);
+    function closeStudentDialog() {
+      document.querySelector("#student_popup").classList.add("hide");
+      document.querySelector("#student_popup .closebutton").removeEventListener("click", closeStudentDialog);
+    }
+  }
   document.querySelector("#list tbody").appendChild(clone);
 }
 
@@ -230,13 +255,16 @@ function makeNewPrefect(selectedStudent) {
     console.log(prefectA, prefectB);
     //ask the user to ignore or remove A or B
     document.querySelector("#remove_prefect").classList.remove("hide");
+
     //make names appear on buttons
     document.querySelector("#remove_prefect .removea").textContent = `Remove ${prefectA.firstname} ${prefectA.lastname}?`;
     document.querySelector("#remove_prefect .removeb").textContent = `Remove ${prefectB.firstname} ${prefectB.lastname}?`;
+
     //add eventlistners to buttons
     document.querySelector("#remove_prefect .closebutton").addEventListener("click", closeDialog);
     document.querySelector("#remove_prefect .removea").addEventListener("click", clickRemoveA);
     document.querySelector("#remove_prefect .removeb").addEventListener("click", clickRemoveB);
+
     // if ignore - do nothing.
     function closeDialog() {
       document.querySelector("#remove_prefect").classList.add("hide");

@@ -113,3 +113,19 @@ button.closebutton {
   right: 15em;
   top: 0.5em;
 }
+/* student dialog */
+.student_dialog {
+  box-shadow: 1px 1px 10px #333;
+  border-radius: 10px;
+  padding: 1.3rem;
+  background-color: #ffffff;
+}
+p.squad ::after {
+  content: "🎖";
+}
+p.squad [student-squad="false"]::after {
+  filter: grayscale(1);
+}
+.crest {
+  width: 200px;
+}
