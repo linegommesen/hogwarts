@@ -227,15 +227,20 @@ function makeNewPrefect(selectedStudent) {
   //   makePrefect(selectedStudent);
 
   function removePrefectAorPrefectB(prefectA, prefectB) {
-    console.log("Remove A or B");
+    console.log(prefectA, prefectB);
     //ask the user to ignore or remove A or B
     document.querySelector("#remove_prefect").classList.remove("hide");
+    //make names appear on buttons
+    document.querySelector("#remove_prefect .removea").textContent = `Remove ${prefectA.firstname} ${prefectA.lastname}?`;
+    document.querySelector("#remove_prefect .removeb").textContent = `Remove ${prefectB.firstname} ${prefectB.lastname}?`;
+    //add eventlistners to buttons
     document.querySelector("#remove_prefect .closebutton").addEventListener("click", closeDialog);
     document.querySelector("#remove_prefect .removea").addEventListener("click", clickRemoveA);
     document.querySelector("#remove_prefect .removeb").addEventListener("click", clickRemoveB);
     // if ignore - do nothing.
     function closeDialog() {
       document.querySelector("#remove_prefect").classList.add("hide");
+
       document.querySelector("#remove_prefect .closebutton").removeEventListener("click", closeDialog);
       document.querySelector("#remove_prefect .removea").removeEventListener("click", clickRemoveA);
       document.querySelector("#remove_prefect .removeb").removeEventListener("click", clickRemoveB);
