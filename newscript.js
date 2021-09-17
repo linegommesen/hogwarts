@@ -180,9 +180,17 @@ function displayStudent(student) {
 
   //Prefect
   if (student.prefect === true) {
-    clone.querySelector("[data-field=prefect]").textContent = "⭐️";
+    if (student.house === "Gryffindor") {
+      clone.querySelector("[data-field=prefect] img").src = "prefects/prefect_gryffindor.png";
+    } else if (student.house === "Slytherin") {
+      clone.querySelector("[data-field=prefect] img").src = "prefects/prefect_slytherin.png";
+    } else if (student.house === "Ravenclaw") {
+      clone.querySelector("[data-field=prefect] img").src = "prefects/prefect_ravenclaw.png";
+    } else {
+      clone.querySelector("[data-field=prefect] img").src = "prefects/prefect_hufflepuff.png";
+    }
   } else {
-    clone.querySelector("[data-field=prefect]").textContent = "☆";
+    clone.querySelector("[data-field=prefect] img").src = "prefects/prefect.png";
   }
   clone.querySelector("[data-field=prefect]").addEventListener("click", clickPrefect);
 
@@ -212,21 +220,31 @@ function displayStudent(student) {
     document.querySelector("#student_popup").classList.remove("hide");
     document.querySelector(".name").textContent = student.firstname + " " + student.lastname;
     document.querySelector(".squad").textContent = `Member of Inquisitorial squad: ${student.squad}`;
-
+    //show prefect stauts
     if (student.prefect === true) {
-      document.querySelector(".prefect").textContent = "Prefect status: " + "⭐️";
+      if (student.house === "Gryffindor") {
+        document.querySelector(".prefect").src = "prefects/prefect_gryffindor.png";
+      } else if (student.house === "Slytherin") {
+        document.querySelector(".prefect").src = "prefects/prefect_slytherin.png";
+      } else if (student.house === "Ravenclaw") {
+        document.querySelector(".prefect").src = "prefects/prefect_ravenclaw.png";
+      } else {
+        document.querySelector(".prefect").src = "prefects/prefect_hufflepuff.png";
+      }
     } else {
-      document.querySelector(".prefect").textContent = "Prefect status: " + "☆";
+      document.querySelector(".prefect").src = "prefects/prefect.png";
     }
+    //show house crest
     if (student.house === "Gryffindor") {
-      document.querySelector(".crest").src = "crests/gryffindor.png";
+      document.querySelector(".crest").src = "crests/newgryffindor.png";
     } else if (student.house === "Slytherin") {
-      document.querySelector(".crest").src = "crests/slytherin.png";
+      document.querySelector(".crest").src = "crests/newslytherin.png";
     } else if (student.house === "Hufflepuff") {
-      document.querySelector(".crest").src = "crests/hufflepuff.png";
+      document.querySelector(".crest").src = "crests/newhufflepuff.png";
     } else {
-      document.querySelector(".crest").src = "crests/ravenclaw.png";
+      document.querySelector(".crest").src = "crests/newravenclaw.png";
     }
+    // closing the student dialog
     document.querySelector("#student_popup .closebutton").addEventListener("click", closeStudentDialog);
     function closeStudentDialog() {
       document.querySelector("#student_popup").classList.add("hide");
