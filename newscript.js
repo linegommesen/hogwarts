@@ -15,6 +15,7 @@ const Student = {
   prefect: false,
   squad: false,
   expelled: false,
+  image: "",
 };
 
 const settings = {
@@ -54,6 +55,7 @@ function prepareObject(jsonObject) {
   student.lastname = name.lastNameUppercase;
   student.house = cleanedHouse;
   student.gender = jsonObject.gender;
+  student.image = getImage(student.firstname, student.lastname);
 
   // console.log(student);
   return student;
@@ -86,6 +88,22 @@ function getHouse(house) {
   // const lowerCase = trimmedHouse.toLowerCase();
   const cleanedHouse = trimmedHouse[0].toUpperCase() + trimmedHouse.substring(1).toLowerCase();
   return cleanedHouse;
+}
+function getImage(firstname, lastname) {
+  let imgName;
+  if (lastname === "Patil") {
+    if (firstname === "Padma") {
+      imgName = "patil_padma.png";
+    } else {
+      imgName = "patil_parvati.png";
+    }
+    return imgName;
+  } else {
+    const firstnameLower = firstname.substring(1, 0).toLowerCase();
+    const lastnameLower = lastname.toLowerCase();
+    imgName = `${lastnameLower}_${firstnameLower}.png`;
+    return imgName;
+  }
 }
 //filtering
 function selectFilter(event) {
@@ -250,6 +268,7 @@ function displayStudent(student) {
   clone.querySelector("[data-field=name]").addEventListener("click", clickStudent);
   function clickStudent() {
     document.querySelector("#student_popup").classList.remove("hide");
+
     //show the right styling according to house
     if (student.house === "Gryffindor") {
       document.querySelector(".student_dialog").classList.add("gryffindor_dialog");
@@ -260,15 +279,20 @@ function displayStudent(student) {
     } else {
       document.querySelector(".student_dialog").classList.add("hufflepuff_dialog");
     }
+
     document.querySelector(".name").textContent = student.firstname + " " + student.lastname;
     document.querySelector(".middlename").textContent = `Middlename: ${student.middlename}`;
-    document.querySelector(".image").src = "images/potter_h.png";
+
+    //image
+    document.querySelector(".image").src = `images/${student.image}`;
+
     //show squad status
     if (student.squad === true) {
       document.querySelector(".squad").src = "squad/squad-03.png";
     } else {
       document.querySelector(".squad").src = "squad/squad-02.png";
     }
+
     //show prefect stauts
     if (student.prefect === true) {
       if (student.house === "Gryffindor") {
@@ -283,6 +307,7 @@ function displayStudent(student) {
     } else {
       document.querySelector(".prefect").src = "prefects/prefect.png";
     }
+
     //show house crest
     if (student.house === "Gryffindor") {
       document.querySelector(".crest").src = "crests/newgryffindor.png";
@@ -293,6 +318,7 @@ function displayStudent(student) {
     } else {
       document.querySelector(".crest").src = "crests/newravenclaw.png";
     }
+
     // closing the student dialog
     document.querySelector("#student_popup .closebutton").addEventListener("click", closeStudentDialog);
     function closeStudentDialog() {
