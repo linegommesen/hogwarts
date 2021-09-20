@@ -131,15 +131,99 @@ button.closebutton {
   background-color: #ffffff;
   width: 50vw;
 }
-h1.name {
-  opacity: 100%;
-  text-shadow: 2px 2px 3px rgb(0 0 0 / 20%);
+.column_right p {
+  margin: 0;
+  margin-left: 2rem;
 }
-
 .crest {
   width: 200px;
 }
 .prefect,
 .squad {
   width: 10rem;
+}
+.column_left {
+  display: flex;
+  flex-direction: column;
+}
+/* Student dialog - Rules for each house */
+/* Gryffindor */
+.gryffindor_dialog {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: #cca226;
+  color: #6c0000;
+  font-family: "magic_school_tworegular";
+  font-size: 3rem;
+  font-weight: normal;
+  width: 70vw;
+  height: 80vh;
+}
+.gryffindor_dialog h1 {
+  opacity: 100%;
+  text-shadow: 2px 2px 3px rgb(0 0 0 / 20%);
+  color: #6c0000;
+  margin: 0em;
+  margin-left: 2rem;
+  text-align: left;
+}
+/* Slytherin */
+.slytherin_dialog {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: #5d5d5d;
+  color: #2a492d;
+  font-family: "magic_school_tworegular";
+  font-size: 3rem;
+  font-weight: normal;
+  width: 70vw;
+  height: 80vh;
+}
+.slytherin_dialog h1 {
+  opacity: 100%;
+  text-shadow: 2px 2px 3px rgb(0 0 0 / 20%);
+  color: #2a492d;
+  margin: 0em;
+  margin-left: 2rem;
+  text-align: left;
+}
+/* Hufflepuff */
+.hufflepuff_dialog {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: #000000;
+  color: #f3d432;
+  font-family: "magic_school_tworegular";
+  font-size: 3rem;
+  font-weight: normal;
+  width: 70vw;
+  height: 80vh;
+}
+.hufflepuff_dialog h1 {
+  opacity: 100%;
+  text-shadow: 2px 2px 3px rgb(0 0 0 / 20%);
+  color: #f3d432;
+  margin: 0em;
+  margin-left: 2rem;
+  text-align: left;
+}
+/* Ravenclaw */
+.ravenclaw_dialog {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: #172044;
+  color: #8d6928;
+  font-family: "magic_school_tworegular";
+  font-size: 3rem;
+  font-weight: normal;
+  width: 70vw;
+  height: 80vh;
+}
+.ravenclaw_dialog h1 {
+  opacity: 100%;
+  text-shadow: 2px 2px 3px rgb(0 0 0 / 20%);
+  color: #8d6928;
+  margin: 0em;
+  margin-left: 2rem;
+  text-align: left;
 }

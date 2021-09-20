@@ -227,8 +227,19 @@ function displayStudent(student) {
   clone.querySelector("[data-field=name]").addEventListener("click", clickStudent);
   function clickStudent() {
     document.querySelector("#student_popup").classList.remove("hide");
+    //show the right styling according to house
+    if (student.house === "Gryffindor") {
+      document.querySelector(".student_dialog").classList.add("gryffindor_dialog");
+    } else if (student.house === "Slytherin") {
+      document.querySelector(".student_dialog").classList.add("slytherin_dialog");
+    } else if (student.house === "Ravenclaw") {
+      document.querySelector(".student_dialog").classList.add("ravenclaw_dialog");
+    } else {
+      document.querySelector(".student_dialog").classList.add("hufflepuff_dialog");
+    }
     document.querySelector(".name").textContent = student.firstname + " " + student.lastname;
-    document.querySelector("#student_popup .middlename").textContent = student.middlename;
+    document.querySelector(".middlename").textContent = `Middlename: ${student.middlename}`;
+    document.querySelector(".image").src = "images/potter_h.png";
     //show squad status
     if (student.squad === true) {
       document.querySelector(".squad").src = "squad/squad-03.png";
@@ -264,6 +275,12 @@ function displayStudent(student) {
     function closeStudentDialog() {
       document.querySelector("#student_popup").classList.add("hide");
       document.querySelector("#student_popup .closebutton").removeEventListener("click", closeStudentDialog);
+
+      //remove the styling according to house
+      document.querySelector(".student_dialog").classList.remove("gryffindor_dialog");
+      document.querySelector(".student_dialog").classList.remove("slytherin_dialog");
+      document.querySelector(".student_dialog").classList.remove("ravenclaw_dialog");
+      document.querySelector(".student_dialog").classList.remove("hufflepuff_dialog");
     }
   }
   document.querySelector("#list tbody").appendChild(clone);
