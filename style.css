@@ -57,45 +57,25 @@ h1 {
   column-gap: 8rem;
 } */
 button {
-  font-family: "magic_school_oneregular";
+  font-family: "magic_school_tworegular";
   font-size: 2rem;
-  /* padding: 3px; */
-  border-radius: 16px;
-  background-color: #d39e2f;
+  border-radius: 9px;
+  background-color: #b9a407;
+  opacity: 75%;
+  border: 0px;
+  width: 10rem;
+  box-shadow: 2px 3px 16px rgb(0 0 0 / 40%);
 }
-.listinfo {
-  /* color: #d39e2f; */
-  margin-top: 3rem;
-  font-weight: bold;
+.filterbuttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 4rem;
 }
-/* #list tbody td:nth-child(odd) td {
-  background-color: lightblue;
-  border-right: rgb(240, 249, 255) 1px dotted;
-}
-#list tbody td:nth-child(even) td {
-  border-right: rgb(171, 219, 252) 1px dotted;
-} */
-
 #list tbody tr td {
   padding: 2rem;
 }
-/* #list tbody tr:nth-child(2n + 1) td {
-  background-color: lightblue;
-  border-right: 1px dotted rgb(240, 249, 255);
-}
-#list tbody tr:nth-child(2n) td {
-  border-right: 1px dotted rgb(171, 219, 252);
-} */
-td[data-field="squad"]::after {
-  content: "🎖";
-}
-td[data-field="squad"][data-squad="false"]::after {
-  filter: grayscale(1);
-}
+
 #list td {
-  /* font-family: gimlet-display, serif;
-  font-weight: 400;
-  font-style: normal; */
   font-family: "magic_school_tworegular";
   font-size: 2rem;
   font-weight: normal;
@@ -105,6 +85,14 @@ td[data-field="squad"][data-squad="false"]::after {
 }
 td img {
   width: 5rem;
+}
+tr#sorting {
+  font-family: "magic_school_tworegular";
+  font-size: 3rem;
+  font-weight: normal;
+  color: #9e9d9b;
+  text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
+  text-align: left;
 }
 
 /* Dialog */
@@ -130,8 +118,10 @@ td img {
 }
 button.closebutton {
   position: absolute;
-  right: 15em;
-  top: 0.5em;
+  /* right: 15em;
+  top: 0.5em; */
+  opacity: 100%;
+  width: 3rem;
 }
 /* student dialog */
 .student_dialog {
@@ -139,16 +129,17 @@ button.closebutton {
   border-radius: 10px;
   padding: 1.3rem;
   background-color: #ffffff;
+  width: 50vw;
 }
-p.squad ::after {
-  content: "🎖";
+h1.name {
+  opacity: 100%;
+  text-shadow: 2px 2px 3px rgb(0 0 0 / 20%);
 }
-p.squad [student-squad="false"]::after {
-  filter: grayscale(1);
-}
+
 .crest {
   width: 200px;
 }
-.prefect {
-  width: 5rem;
+.prefect,
+.squad {
+  width: 10rem;
 }

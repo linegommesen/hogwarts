@@ -169,6 +169,8 @@ function buildList() {
 //visual
 function displayList(students) {
   document.querySelector("#list tbody").innerHTML = "";
+  document.querySelector(".studentnumber").textContent = `Number of students: ${studentArray.length}`;
+  document.querySelector(".displayednumber").textContent = `Currently displayed: ${students.length}`;
 
   students.forEach(displayStudent);
 }
@@ -205,6 +207,11 @@ function displayStudent(student) {
 
   //Squad
   clone.querySelector("[data-field=squad]").dataset.squad = student.squad;
+  if (student.squad === true) {
+    clone.querySelector("[data-field=squad] img").src = "squad/squad-03.png";
+  } else {
+    clone.querySelector("[data-field=squad] img").src = "squad/squad-02.png";
+  }
 
   clone.querySelector("[data-field=squad]").addEventListener("click", clickSquad);
   function clickSquad() {
@@ -215,11 +222,19 @@ function displayStudent(student) {
     }
     buildList();
   }
+
+  //student pop-up
   clone.querySelector("[data-field=name]").addEventListener("click", clickStudent);
   function clickStudent() {
     document.querySelector("#student_popup").classList.remove("hide");
     document.querySelector(".name").textContent = student.firstname + " " + student.lastname;
-    document.querySelector(".squad").textContent = `Member of Inquisitorial squad: ${student.squad}`;
+    document.querySelector("#student_popup .middlename").textContent = student.middlename;
+    //show squad status
+    if (student.squad === true) {
+      document.querySelector(".squad").src = "squad/squad-03.png";
+    } else {
+      document.querySelector(".squad").src = "squad/squad-02.png";
+    }
     //show prefect stauts
     if (student.prefect === true) {
       if (student.house === "Gryffindor") {

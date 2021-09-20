@@ -16,15 +16,16 @@
     </div>
     <div class="siteinfo">
       <p class="studentnumber">Number of students:</p>
-      <p class="expellednumber">Expelled students:</p>
       <p class="displayednumber">Currently displayed:</p>
+      <p class="expellednumber">Expelled students:</p>
     </div>
-
-    <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
-    <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
-    <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
-    <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
-    <button class="filter" data-action="filter" data-filter="*">all</button>
+    <div class="filterbuttons">
+      <button class="filter" data-action="filter" data-filter="*">All</button>
+      <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
+      <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
+      <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
+      <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
+    </div>
 
     <table id="list">
       <thead>
@@ -44,7 +45,9 @@
         <td data-field="prefect">
           <img src="" alt="" />
         </td>
-        <td data-field="squad" data-squad="false"></td>
+        <td data-field="squad" data-squad="false">
+          <img src="" alt="" />
+        </td>
       </tr>
     </template>
     <div id="remove_prefect" class="modal hide">
@@ -67,14 +70,16 @@
         <img src="" alt="" class="image" />
         <h1 class="name"></h1>
         <p class="nickname"></p>
+        <p class="middlename"></p>
         <img src="" alt="" class="prefect" />
-        <p class="squad"></p>
+        <img src="" alt="" class="squad" />
         <p class="expelled"></p>
         <img src="" alt="" class="crest" />
       </div>
     </div>
     <footer>
       <a href="https://www.freepik.com/vectors/templates">Templates vector created by freepik - www.freepik.com</a>
+      <a href="https://www.freepik.com/vectors/icons">Icons vector created by macrovector - www.freepik.com</a>
     </footer>
 
     <script src="newscript.js"></script>
