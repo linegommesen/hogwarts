@@ -4,6 +4,8 @@ window.addEventListener("load", start);
 
 let studentArray = [];
 let expelledStudentsArray = [];
+// let bloodStatusArray = [];
+let bloodData;
 
 const Student = {
   firstname: "",
@@ -16,6 +18,7 @@ const Student = {
   squad: false,
   expelled: false,
   image: "",
+  bloodstatus: "",
 };
 
 const settings = {
@@ -29,13 +32,24 @@ function start() {
   loadJson();
 }
 async function loadJson() {
+  const bloodResponse = await fetch(`https://petlatkea.dk/2021/hogwarts/families.json`);
+  bloodData = await bloodResponse.json();
+
   const response = await fetch(`https://petlatkea.dk/2021/hogwarts/students.json`);
   const jsonData = await response.json();
-  //   console.log(jsonData);
 
   addEventlisteners();
+
   prepareObjects(jsonData);
 }
+
+// async function loadBloodStatus() {
+//   const bloodResponse = await fetch(`https://petlatkea.dk/2021/hogwarts/families.json`);
+//   bloodData = await bloodResponse.json();
+
+//   prepareObject(bloodData);
+// }
+
 function addEventlisteners() {
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
 
@@ -56,6 +70,7 @@ function prepareObject(jsonObject) {
   student.house = cleanedHouse;
   student.gender = jsonObject.gender;
   student.image = getImage(student.firstname, student.lastname);
+  student.bloodstatus = getBloodStatus(student.lastname);
 
   // console.log(student);
   return student;
@@ -104,6 +119,18 @@ function getImage(firstname, lastname) {
     imgName = `${lastnameLower}_${firstnameLower}.png`;
     return imgName;
   }
+}
+function getBloodStatus(lastname) {
+  // console.log(bloodData);
+  let bloodstatus;
+  if (bloodData.half.includes(`${lastname}`)) {
+    bloodstatus = "Halfblood";
+  } else if (bloodData.pure.includes(`${lastname}`)) {
+    bloodstatus = "Pureblood";
+  } else {
+    bloodstatus = "Mudblood";
+  }
+  return bloodstatus;
 }
 //filtering
 function selectFilter(event) {
