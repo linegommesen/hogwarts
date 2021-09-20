@@ -3,6 +3,7 @@
 window.addEventListener("load", start);
 
 let studentArray = [];
+let expelledStudentsArray = [];
 
 const Student = {
   firstname: "",
@@ -13,6 +14,7 @@ const Student = {
   gender: "",
   prefect: false,
   squad: false,
+  expelled: false,
 };
 
 const settings = {
@@ -53,7 +55,7 @@ function prepareObject(jsonObject) {
   student.house = cleanedHouse;
   student.gender = jsonObject.gender;
 
-  //   console.log(student);
+  // console.log(student);
   return student;
 }
 function getNameParts(fullname) {
@@ -171,6 +173,7 @@ function displayList(students) {
   document.querySelector("#list tbody").innerHTML = "";
   document.querySelector(".studentnumber").textContent = `Number of students: ${studentArray.length}`;
   document.querySelector(".displayednumber").textContent = `Currently displayed: ${students.length}`;
+  document.querySelector(".expellednumber").textContent = `Expelled students: ${expelledStudentsArray.length}`;
 
   students.forEach(displayStudent);
 }
@@ -220,6 +223,24 @@ function displayStudent(student) {
     } else {
       student.squad = true;
     }
+    buildList();
+  }
+
+  //Expell
+  clone.querySelector("[data-field=expelled]").dataset.expelled = student.expelled;
+  clone.querySelector("[data-field=expelled]").addEventListener("click", clickExpelled);
+  function clickExpelled() {
+    student.expelled = true;
+    //get index of clicked student
+    const expelledStudent = studentArray.indexOf(student);
+
+    //splice student from array
+    studentArray.splice(expelledStudent, 1);
+
+    //add student to expelled student array
+    expelledStudentsArray.unshift(student);
+
+    //show new list
     buildList();
   }
 
