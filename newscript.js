@@ -106,6 +106,8 @@ function filterList(filteredList) {
     filteredList = studentArray.filter(isRavenclaw);
   } else if (settings.filterBy === "Hufflepuff") {
     filteredList = studentArray.filter(isHufflepuff);
+  } else if (settings.filterBy === "Expelled") {
+    filteredList = expelledStudentsArray;
   }
   return filteredList;
 }
