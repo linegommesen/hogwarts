@@ -43,17 +43,12 @@ async function loadJson() {
   prepareObjects(jsonData);
 }
 
-// async function loadBloodStatus() {
-//   const bloodResponse = await fetch(`https://petlatkea.dk/2021/hogwarts/families.json`);
-//   bloodData = await bloodResponse.json();
-
-//   prepareObject(bloodData);
-// }
-
 function addEventlisteners() {
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
 
   document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
+
+  document.querySelector("#search").addEventListener("input", searchField);
 }
 function prepareObjects(jsonData) {
   studentArray = jsonData.map(prepareObject);
@@ -78,7 +73,7 @@ function prepareObject(jsonObject) {
 function getNameParts(fullname) {
   const trimmedName = fullname.trim();
 
-  const firstName = trimmedName.substring(0, trimmedName.indexOf(" "));
+  const firstName = trimmedName.substring(0, trimmedName.indexOf(" ")).toLowerCase();
   const firstNameUppercase = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
 
   const lastName = trimmedName.substring(trimmedName.lastIndexOf(" ") + 1).toLowerCase();
@@ -215,9 +210,20 @@ function buildList() {
 
   displayList(sortedList);
 }
+//searchfield
+function searchField() {
+  const searchWord = document.querySelector("#search").value.toLowerCase();
+  const filteredSearch = studentArray.filter((student) => {
+    return student.firstname.toLowerCase().includes(searchWord) || student.lastname.toLowerCase().includes(searchWord);
+  });
+  displayList(filteredSearch);
+}
+
 //visual
 function displayList(students) {
   document.querySelector("#list tbody").innerHTML = "";
+
+  //Counters
   document.querySelector(".studentnumber").textContent = `Number of students: ${studentArray.length}`;
   document.querySelector(".displayednumber").textContent = `Currently displayed: ${students.length}`;
   document.querySelector(".expellednumber").textContent = `Expelled students: ${expelledStudentsArray.length}`;
@@ -227,7 +233,8 @@ function displayList(students) {
 function displayStudent(student) {
   const clone = document.querySelector("template").content.cloneNode(true);
 
-  clone.querySelector("[data-field=name]").textContent = student.firstname + " " + student.lastname;
+  clone.querySelector("[data-field=firstname]").textContent = student.firstname;
+  clone.querySelector("[data-field=lastname]").textContent = student.lastname;
   clone.querySelector("[data-field=house]").textContent = student.house;
 
   //Prefect
@@ -278,6 +285,8 @@ function displayStudent(student) {
   clone.querySelector("[data-field=expelled]").addEventListener("click", clickExpelled);
   function clickExpelled() {
     student.expelled = true;
+    // clone.querySelector("[data-field=expelled] p").textContent = `Expelled`;
+
     //get index of clicked student
     const expelledStudent = studentArray.indexOf(student);
 
@@ -292,7 +301,8 @@ function displayStudent(student) {
   }
 
   //student pop-up
-  clone.querySelector("[data-field=name]").addEventListener("click", clickStudent);
+  clone.querySelector("[data-field=firstname]").addEventListener("click", clickStudent);
+  clone.querySelector("[data-field=lastname]").addEventListener("click", clickStudent);
   function clickStudent() {
     document.querySelector("#student_popup").classList.remove("hide");
 
@@ -309,6 +319,12 @@ function displayStudent(student) {
 
     document.querySelector(".name").textContent = student.firstname + " " + student.lastname;
     document.querySelector(".middlename").textContent = `Middlename: ${student.middlename}`;
+    document.querySelector(".bloodstatus").textContent = `Bloodstatus: ${student.bloodstatus}`;
+
+    //show expelled status
+    if (student.expelled === true) {
+      document.querySelector(".expelled").textContent = `Expelled: True`;
+    }
 
     //image
     document.querySelector(".image").src = `images/${student.image}`;

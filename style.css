@@ -12,11 +12,23 @@ li {
   /* background-color: #0f2027;
   opacity: 80%; */
 }
-.siteinfo,
+/* .siteinfo,
 .listinfo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.houseinfo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+} */
+.top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+/* .houseinfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+} */
 body {
   max-width: 80%;
   margin-left: auto;
@@ -45,10 +57,11 @@ h1 {
 .houseinfo p {
   margin-top: 0;
   font-family: "magic_school_tworegular";
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: normal;
-  color: #b9a407;
-  opacity: 75%;
+  /* color: #b9a407; */
+  color: #9e9d9b;
+  /* opacity: 75%; */
   text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
 }
 /* .filter {
@@ -68,7 +81,7 @@ button {
 }
 .filterbuttons {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   margin-bottom: 4rem;
 }
 #list tbody tr td {
@@ -82,17 +95,37 @@ button {
   color: #b9a407;
   opacity: 75%;
   text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
+  text-align: center;
 }
 td img {
-  width: 5rem;
+  width: 8rem;
 }
 tr#sorting {
   font-family: "magic_school_tworegular";
   font-size: 3rem;
-  font-weight: normal;
+  /* font-weight: normal; */
   color: #9e9d9b;
   text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
-  text-align: left;
+  /* text-align: left; */
+}
+th {
+  font-weight: normal;
+}
+/* searchfield */
+input#search {
+  height: 3rem;
+  width: 14rem;
+  border-radius: 7px;
+  border: 2px solid #9e9d9b;
+  background-color: transparent;
+  font-family: "magic_school_tworegular";
+  font-size: 2rem;
+  text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
+  color: #9e9d9b;
+  box-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
+}
+::placeholder {
+  color: #9e9d9b;
 }
 
 /* Dialog */

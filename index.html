@@ -10,14 +10,20 @@
   </head>
   <body>
     <h1>Hogwarts student list</h1>
-
-    <div class="houseinfo">
-      <p>Houses:</p>
-    </div>
-    <div class="siteinfo">
-      <p class="studentnumber">Number of students:</p>
-      <p class="displayednumber">Currently displayed:</p>
-      <p class="expellednumber">Expelled students:</p>
+    <div class="top">
+      <div class="houseinfo">
+        <!-- <p>Houses:</p> -->
+        <p class="gryffindornumber">Gryffindor:</p>
+        <p class="slytherinnumber">Slytherin:</p>
+        <p class="hufflepuffnumber">Hufflepuff:</p>
+        <p class="ravenclawnumber">Ravenclaw:</p>
+      </div>
+      <div class="siteinfo">
+        <p class="studentnumber">Number of students:</p>
+        <p class="displayednumber">Currently displayed:</p>
+        <p class="expellednumber">Expelled students:</p>
+        <input type="search" id="search" placeholder="Search..." />
+      </div>
     </div>
     <div class="filterbuttons">
       <button class="filter" data-action="filter" data-filter="*">All</button>
@@ -31,17 +37,20 @@
     <table id="list">
       <thead>
         <tr id="sorting">
-          <th data-action="sort" data-sort-direction="asc" data-sort="firstname">Name</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="firstname">Firstame</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="lastname">Lastame</th>
           <th data-action="sort" data-sort-direction="asc" data-sort="house">House</th>
           <th data-action="sort" data-sort-direction="asc" data-sort="prefect">Prefect</th>
           <th data-action="sort" data-sort-direction="asc" data-sort="squad">Inquisitorial squad</th>
+          <th data-action="sort" data-sort-direction="asc" data-sort="expelled">Expell</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
     <template id="student">
       <tr>
-        <td data-field="name">NAME</td>
+        <td data-field="firstname">Firstname</td>
+        <td data-field="lastname">Lastname</td>
         <td data-field="house">HOUSE</td>
         <td data-field="prefect">
           <img src="" alt="" />
@@ -49,7 +58,9 @@
         <td data-field="squad" data-squad="false">
           <img src="" alt="" />
         </td>
-        <td data-field="expelled">Expelled</td>
+        <td data-field="expelled">
+          <p>🪄 Expell student</p>
+        </td>
       </tr>
     </template>
     <div id="remove_prefect" class="modal hide">
@@ -77,7 +88,8 @@
           <h1 class="name"></h1>
           <p class="nickname"></p>
           <p class="middlename"></p>
-          <p class="expelled">Expelled:</p>
+          <p class="bloodstatus"></p>
+          <p class="expelled"></p>
           <p class="awards">Awards:</p>
           <img src="" alt="" class="prefect" />
           <img src="" alt="" class="squad" />
