@@ -228,6 +228,12 @@ function displayList(students) {
   document.querySelector(".displayednumber").textContent = `Currently displayed: ${students.length}`;
   document.querySelector(".expellednumber").textContent = `Expelled students: ${expelledStudentsArray.length}`;
 
+  //Counters for houses
+  document.querySelector(".gryffindornumber").textContent = "Gryffindor: " + studentArray.filter((student) => student.house === "Gryffindor").length;
+  document.querySelector(".slytherinnumber").textContent = "Slytherin: " + studentArray.filter((student) => student.house === "Slytherin").length;
+  document.querySelector(".hufflepuffnumber").textContent = "Huifflepuff: " + studentArray.filter((student) => student.house === "Hufflepuff").length;
+  document.querySelector(".ravenclawnumber").textContent = "Ravenclaw: " + studentArray.filter((student) => student.house === "Ravenclaw").length;
+
   students.forEach(displayStudent);
 }
 function displayStudent(student) {
