@@ -1,7 +1,7 @@
 "use strict";
 
 window.addEventListener("load", start);
-
+let isSystemHacked = false;
 let studentArray = [];
 let expelledStudentsArray = [];
 // let bloodStatusArray = [];
@@ -278,11 +278,23 @@ function displayStudent(student) {
 
   clone.querySelector("[data-field=squad]").addEventListener("click", clickSquad);
   function clickSquad() {
-    if (student.squad === true) {
-      student.squad = false;
+    if (student.bloodstatus === "Pureblood") {
+      if (student.squad === true) {
+        student.squad = false;
+      } else {
+        student.squad = true;
+      }
     } else {
-      student.squad = true;
+      squadWarning();
     }
+
+    //inquisitorial squad when system is hacked
+    if (isSystemHacked === true) {
+      if (student.squad === true) {
+        setTimeout(clickSquad, 3000);
+      }
+    }
+    // clone.querySelector("[data-field=squad]").removeEventListener("click", clickSquad);
     buildList();
   }
 
@@ -290,20 +302,44 @@ function displayStudent(student) {
   clone.querySelector("[data-field=expelled]").dataset.expelled = student.expelled;
   clone.querySelector("[data-field=expelled]").addEventListener("click", clickExpelled);
   function clickExpelled() {
-    student.expelled = true;
-    // clone.querySelector("[data-field=expelled] p").textContent = `Expelled`;
+    try {
+      student.expelled = true;
 
-    //get index of clicked student
-    const expelledStudent = studentArray.indexOf(student);
+      //get index of clicked student
+      const expelledStudent = studentArray.indexOf(student);
 
-    //splice student from array
-    studentArray.splice(expelledStudent, 1);
+      //splice student from array
+      studentArray.splice(expelledStudent, 1);
 
-    //add student to expelled student array
-    expelledStudentsArray.unshift(student);
-
+      //add student to expelled student array
+      expelledStudentsArray.unshift(student);
+    } catch {
+      cantBeExpelled();
+    }
     //show new list
     buildList();
+  }
+
+  //Warning popups
+  //Hacked student expell warning
+  function cantBeExpelled() {
+    console.log("cant be expelled");
+    document.querySelector("#expell_popup").classList.remove("hide");
+    document.querySelector("#expell_popup .closebutton").addEventListener("click", clickCannotExpell);
+  }
+  function clickCannotExpell() {
+    document.querySelector("#expell_popup .closebutton").removeEventListener("click", clickCannotExpell);
+    document.querySelector("#expell_popup").classList.add("hide");
+  }
+
+  //Inquisitorial squad warning
+  function squadWarning() {
+    document.querySelector("#squad_popup").classList.remove("hide");
+    document.querySelector("#squad_popup .closebutton").addEventListener("click", closeSquadWarning);
+  }
+  function closeSquadWarning() {
+    document.querySelector("#squad_popup").classList.add("hide");
+    document.querySelector("#squad_popup .closebutton").removeEventListener("click", closeSquadWarning);
   }
 
   //student pop-up
@@ -442,4 +478,38 @@ function makeNewPrefect(selectedStudent) {
   function makePrefect(student) {
     student.prefect = true;
   }
+}
+
+//hacking
+function hackTheSystem() {
+  isSystemHacked = true;
+  const me = {
+    firstname: "Line",
+    lastname: "Gommesen",
+    house: "Gryffindor",
+    expelled: false,
+    bloodstatus: "Halfblood",
+    prefect: false,
+    squad: false,
+  };
+  Object.defineProperty(me, "expelled", { writable: false });
+  studentArray.push(me);
+
+  studentArray.forEach((student) => {
+    if (student.bloodstatus === "Halfblood") {
+      student.bloodstatus = "Pureblood";
+    } else if (student.bloodstatus === "Mudblood") {
+      student.bloodstatus = "Pureblood";
+    } else {
+      let randomBlood = Math.floor(Math.random() * 3 + 1);
+      if (randomBlood === 1) {
+        student.bloodstatus = "Pureblood";
+      } else if (randomBlood === 2) {
+        student.bloodstatus = "Halfblood";
+      } else {
+        student.bloodstatus = "Mudblood";
+      }
+    }
+  });
+  buildList();
 }
