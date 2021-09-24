@@ -4,14 +4,12 @@ window.addEventListener("load", start);
 let isSystemHacked = false;
 let studentArray = [];
 let expelledStudentsArray = [];
-// let bloodStatusArray = [];
 let bloodData;
 
 const Student = {
   firstname: "",
   lastname: "",
   middlename: "",
-  nickname: "",
   house: "",
   gender: "",
   prefect: false,
@@ -49,6 +47,8 @@ function addEventlisteners() {
   document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
 
   document.querySelector("#search").addEventListener("input", searchField);
+
+  document.querySelector(".secret_button").addEventListener("click", hackTheSystem);
 }
 function prepareObjects(jsonData) {
   studentArray = jsonData.map(prepareObject);
@@ -482,34 +482,36 @@ function makeNewPrefect(selectedStudent) {
 
 //hacking
 function hackTheSystem() {
-  isSystemHacked = true;
-  const me = {
-    firstname: "Line",
-    lastname: "Gommesen",
-    house: "Gryffindor",
-    expelled: false,
-    bloodstatus: "Halfblood",
-    prefect: false,
-    squad: false,
-  };
-  Object.defineProperty(me, "expelled", { writable: false });
-  studentArray.push(me);
+  if (isSystemHacked !== true) {
+    isSystemHacked = true;
+    const me = {
+      firstname: "Line",
+      lastname: "Gommesen",
+      house: "Gryffindor",
+      expelled: false,
+      bloodstatus: "Halfblood",
+      prefect: false,
+      squad: false,
+    };
+    Object.defineProperty(me, "expelled", { writable: false });
+    studentArray.push(me);
 
-  studentArray.forEach((student) => {
-    if (student.bloodstatus === "Halfblood") {
-      student.bloodstatus = "Pureblood";
-    } else if (student.bloodstatus === "Mudblood") {
-      student.bloodstatus = "Pureblood";
-    } else {
-      let randomBlood = Math.floor(Math.random() * 3 + 1);
-      if (randomBlood === 1) {
+    studentArray.forEach((student) => {
+      if (student.bloodstatus === "Halfblood") {
         student.bloodstatus = "Pureblood";
-      } else if (randomBlood === 2) {
-        student.bloodstatus = "Halfblood";
+      } else if (student.bloodstatus === "Mudblood") {
+        student.bloodstatus = "Pureblood";
       } else {
-        student.bloodstatus = "Mudblood";
+        let randomBlood = Math.floor(Math.random() * 3 + 1);
+        if (randomBlood === 1) {
+          student.bloodstatus = "Pureblood";
+        } else if (randomBlood === 2) {
+          student.bloodstatus = "Halfblood";
+        } else {
+          student.bloodstatus = "Mudblood";
+        }
       }
-    }
-  });
-  buildList();
+    });
+    buildList();
+  }
 }
