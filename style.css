@@ -1,34 +1,7 @@
-ul {
-  padding: 0;
-  margin-top: 1rem;
-  /* max-width: 80%;
-  margin-left: auto;
-  margin-right: auto; */
-}
-li {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 4rem;
-  /* background-color: #0f2027;
-  opacity: 80%; */
-}
-/* .siteinfo,
-.listinfo {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.houseinfo {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-} */
 .top {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-/* .houseinfo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-} */
 body {
   max-width: 80%;
   margin-left: auto;
@@ -38,6 +11,8 @@ body {
   background: -webkit-linear-gradient(to right, #2f0743, #41295a); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2f0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+/* Typography */
 @font-face {
   font-family: "magic_school_tworegular";
   src: url("magicschooltwo-4n5d-webfont.woff2") format("woff2"), url("magicschooltwo-4n5d-webfont.woff") format("woff");
@@ -59,16 +34,11 @@ h1 {
   font-family: "magic_school_tworegular";
   font-size: 2rem;
   font-weight: normal;
-  /* color: #b9a407; */
   color: #9e9d9b;
-  /* opacity: 75%; */
   text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
 }
-/* .filter {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 8rem;
-} */
+
+/* Buttons */
 button {
   font-family: "magic_school_tworegular";
   font-size: 2rem;
@@ -84,10 +54,44 @@ button {
   grid-template-columns: repeat(6, 1fr);
   margin-bottom: 4rem;
 }
+button.closebutton {
+  position: absolute;
+  opacity: 100%;
+  width: 3rem;
+}
+.removea,
+.removeb {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 100%;
+  box-shadow: 2px 3px 16px rgb(0 0 0 / 20%);
+}
+.prefectbuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.secret_button {
+  font-size: 2rem;
+}
+
+/* List */
+ul {
+  padding: 0;
+  margin-top: 1rem;
+}
+li {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4rem;
+}
 #list tbody tr td {
   padding: 2rem;
 }
-
 #list td {
   font-family: "magic_school_tworegular";
   font-size: 2rem;
@@ -103,15 +107,13 @@ td img {
 tr#sorting {
   font-family: "magic_school_tworegular";
   font-size: 3rem;
-  /* font-weight: normal; */
   color: #9e9d9b;
-  text-shadow: 2px 4px 3px rgb(0 0 0 / 40%);
-  /* text-align: left; */
 }
 th {
   font-weight: normal;
 }
-/* searchfield */
+
+/* Searchfield */
 input#search {
   height: 3rem;
   width: 14rem;
@@ -128,7 +130,7 @@ input#search {
   color: #9e9d9b;
 }
 
-/* Dialog */
+/* Dialog and modal*/
 .hide {
   visibility: hidden;
 }
@@ -149,31 +151,8 @@ input#search {
   padding: 1.3rem;
   background-color: #ffffff;
 }
-button.closebutton {
-  position: absolute;
-  /* right: 15em;
-  top: 0.5em; */
-  opacity: 100%;
-  width: 3rem;
-}
-.removea,
-.removeb {
-  width: auto;
-  /* margin: 3rem; */
-  padding-left: 1rem;
-  padding-right: 1rem;
-  align-items: center;
-  justify-content: center;
-  opacity: 100%;
-  box-shadow: 2px 3px 16px rgb(0 0 0 / 20%);
-}
-.prefectbuttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-/* student dialog */
+
+/* Warning- and student dialogs */
 .student_dialog,
 .expell_dialog,
 .dialog,
@@ -220,6 +199,7 @@ button.closebutton {
   display: flex;
   flex-direction: column;
 }
+
 /* Student dialog - Rules for each house */
 /* Gryffindor */
 .gryffindor_dialog {
@@ -300,8 +280,4 @@ button.closebutton {
   margin: 0em;
   margin-left: 2rem;
   text-align: left;
-}
-
-.secret_button {
-  font-size: 2rem;
 }
